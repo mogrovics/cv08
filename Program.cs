@@ -12,16 +12,12 @@ namespace cv08
         {
             Archive archive = new Archive();
             
-            archive.Load();
+            archive.Load("data_load.txt");
             archive.AllTemps();
             archive.AverageYearTemps();
             archive.AverageMonthTemps();
-            //archive.Calibration(-0.1);
-            archive.Save();
-
-            archive.AllTemps();
-            archive.AverageYearTemps();
-            archive.AverageMonthTemps();
+            archive.Calibration(-0.1);
+            archive.Save("data_save.txt");
 
             Console.ReadLine();
         }

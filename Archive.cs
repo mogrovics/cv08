@@ -9,19 +9,17 @@ namespace cv08
 {
     public class Archive
     {
-        private SortedDictionary<int, YearTemp> _archive;
+        private SortedDictionary<int, YearTemp> _archive = new SortedDictionary<int, YearTemp>();
 
         // loads data from txt file and stores it in a SortedDictionary
-        public void Load()
+        public void Load(string path)
         {
             string line;
             int year;
-            _archive = new SortedDictionary<int, YearTemp>();
 
             try
             {
-                StreamReader reader = File.OpenText(@"data.txt");
-
+                StreamReader reader = File.OpenText(@path);
 
                 while (!reader.EndOfStream)
                 {
@@ -41,7 +39,7 @@ namespace cv08
                 }
 
                 reader.Close();
-                Console.WriteLine("File loaded.");
+                Console.WriteLine("File {0} loaded", path);
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -51,11 +49,11 @@ namespace cv08
         }
 
         // saves data in _archive to a txt file
-        public void Save()
+        public void Save(string path)
         {
             try
             {
-                StreamWriter writer = File.CreateText(@"data.txt");
+                StreamWriter writer = File.CreateText(@path);
 
                 foreach (var yearTemp in _archive.Values)
                 {
@@ -71,7 +69,7 @@ namespace cv08
                 }
 
                 writer.Close();
-                Console.WriteLine("Temperatures saved to data.txt");
+                Console.WriteLine("Temperatures saved to {0}", path);
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -124,24 +122,6 @@ namespace cv08
             }
 
             Console.WriteLine();
-            
-            /*
-            for (int i = 0; i < _archive.Count; i++)
-            {
-                int year = _archive.Keys.ElementAt(i);
-                YearTemp yearData = Search(year);
-
-                Console.Write("{0}: ", yearData.Year);
-
-                for (int j = 0; j < yearData.MonthTemp.Count; j++)
-                {
-                    if (j != yearData.MonthTemp.Count - 1)
-                        Console.Write("{0:0.0}  ", yearData.MonthTemp[j]);
-                    else
-                        Console.Write("{0:0.0}\n", yearData.MonthTemp[j]);
-                }
-            }
-            */
         }
 
         // prints average yearly temperatures
@@ -162,7 +142,6 @@ namespace cv08
         {
             Console.WriteLine("Average monthly temperatures:");
             List<double> monthAverages = new List<double>();
-            //YearTemp dataSet = Search(_archive.First().Key);
 
             foreach (var yearData in _archive.Values)
             {
