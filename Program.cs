@@ -16,8 +16,12 @@ namespace cv08
             archive.AllTemps();
             archive.AverageYearTemps();
             archive.AverageMonthTemps();
-            archive.Calibration(0.1);
+            //archive.Calibration(-0.1);
             archive.Save();
+
+            archive.AllTemps();
+            archive.AverageYearTemps();
+            archive.AverageMonthTemps();
 
             Console.ReadLine();
         }
