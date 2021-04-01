@@ -10,14 +10,14 @@ namespace cv08
     {
         static void Main(string[] args)
         {
-            Archive test = new Archive();
+            Archive archive = new Archive();
             
-            test.Load();
-            test.AllTemps();
-            test.AverageYearTemps();
-            test.AverageMonthTemps();
-            test.Calibration(0.1);
-            test.Save();
+            archive.Load();
+            archive.AllTemps();
+            archive.AverageYearTemps();
+            archive.AverageMonthTemps();
+            archive.Calibration(0.1);
+            archive.Save();
 
             Console.ReadLine();
         }

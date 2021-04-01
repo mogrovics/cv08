@@ -11,13 +11,14 @@ namespace cv08
     {
         private SortedDictionary<int, YearTemp> _archive;
 
+        // loads data from txt file and stores it in a SortedDictionary
         public void Load()
         {
             string line;
             int year;
             _archive = new SortedDictionary<int, YearTemp>();
 
-            StreamReader reader = File.OpenText(@"soubor.txt");
+            StreamReader reader = File.OpenText(@"data.txt");
             
             
             while (!reader.EndOfStream)
@@ -40,9 +41,10 @@ namespace cv08
             reader.Close();
         }
 
+        // saves data in _archive to a txt file
         public void Save()
         {
-            StreamWriter writer = File.CreateText(@"soubor.txt");
+            StreamWriter writer = File.CreateText(@"data.txt");
 
             foreach (var yearTemp in _archive.Values)
             {
@@ -60,6 +62,7 @@ namespace cv08
             writer.Close();
         }
 
+        // adds a value to all temperatures
         public void Calibration(double calibrationValue)
         {
             foreach (var temp in _archive.Values)
@@ -84,6 +87,7 @@ namespace cv08
             }
         }
 
+        // prints all temperatures for all years
         public void AllTemps()
         {
             Console.WriteLine("All temperatures by year:");
@@ -120,6 +124,7 @@ namespace cv08
             */
         }
 
+        // prints average yearly temperatures
         public void AverageYearTemps()
         {
             Console.WriteLine("\nAverage year temperatures:");
@@ -131,6 +136,7 @@ namespace cv08
             
         }
 
+        // prints average monthly temperatures
         public void AverageMonthTemps()
         {
             Console.WriteLine("\nAverage monthly temperatures:");
@@ -158,11 +164,6 @@ namespace cv08
                 else
                     Console.Write("{0:0.0}\n", monthAverages[i]);
             }
-            
-            
-
-            
-
         }
     }
 }

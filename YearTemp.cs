@@ -10,10 +10,6 @@ namespace cv08
     {
         private int year;
         private List<double> monthTemp;
-        /*
-        private double maxTemp;
-        private double minTemp;
-        */
         private double averageYearTemp;
         
 
@@ -42,7 +38,6 @@ namespace cv08
                 return MonthTemp.FirstOrDefault();
             }
         }
-        public double AverageYearTemp { get => averageYearTemp = MonthTemp.Average(); }
-        
+        public double AverageYearTemp { get => averageYearTemp = MonthTemp.Average(); }   
     }
 }
